@@ -1,0 +1,17 @@
+{
+  "name": "nursing-voice-assistant",
+  "version": "1.0.0",
+  "description": "护理文书语音录入助手",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "ws": "^8.14.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

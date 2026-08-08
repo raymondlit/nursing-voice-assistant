@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: nursing-voice-assistant
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ASR_WS_URL
+        sync: false
+      - key: ASR_API_KEY
+        sync: false
+      - key: LLM_API_URL
+        sync: false
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        value: gpt-3.5-turbo
+      - key: DEMO_TRANSCRIPT
+        value: "患者 李四 床号 08 体温 37.5 脉搏 82 呼吸 20 血压 128/85 主诉 胸闷气短 查体 神志清楚 双肺呼吸音粗 处理意见 吸氧 心电监护"
