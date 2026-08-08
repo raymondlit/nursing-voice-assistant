@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>护理文书语音录入助手</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 悬浮语音录入组件 -->
+  <div id="voice-widget" class="voice-widget">
+    <button id="mic-btn" class="mic-btn" aria-label="语音录入">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+        <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/>
+        <path d="M17 11v-1a1 1 0 0 0-2 0v1a3 3 0 0 1-6 0v-1a1 1 0 0 0-2 0v1a5 5 0 0 0 4 4.9V20H8a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2h-3v-4.1a5 5 0 0 0 4-4.9z"/>
+      </svg>
+    </button>
+
+    <div id="voice-card" class="voice-card hidden">
+      <div class="voice-card-header">
+        <span>语音录入</span>
+        <button id="close-card" class="icon-btn">×</button>
+      </div>
+
+      <div class="transcript-box" id="transcript-box">
+        <div id="transcript-text" class="transcript-text"></div>
+      </div>
+
+      <textarea
+        id="edit-textarea"
+        class="edit-textarea"
+        placeholder="停止录音后可在此编辑最终转写文本…"
+      ></textarea>
+
+      <div class="controls">
+        <button id="btn-start" class="btn btn-primary">开始</button>
+        <button id="btn-pause" class="btn" disabled>暂停</button>
+        <button id="btn-stop" class="btn btn-danger" disabled>停止</button>
+        <button id="btn-clear" class="btn btn-secondary">清空</button>
+      </div>
+
+      <button id="btn-generate" class="btn btn-generate" disabled>
+        生成护理记录
+      </button>
+    </div>
+  </div>
+
+  <!-- 审阅表单页 -->
+  <main id="review-page" class="review-page hidden">
+    <div class="container">
+      <div class="page-header">
+        <h1>护理记录审阅</h1>
+        <button id="btn-back" class="btn btn-secondary">返回录音</button>
+      </div>
+
+      <form id="record-form" class="record-form">
+        <section class="form-section">
+          <h2>基本信息</h2>
+          <div class="grid-2">
+            <label>
+              床号
+              <input name="bed_no" type="text" placeholder="例：08" />
+            </label>
+            <label>
+              姓名
+              <input name="name" type="text" placeholder="例：张三" />
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>生命体征</h2>
+          <div class="grid-4">
+            <label>
+              体温 (℃)
+              <input name="temperature" type="number" step="0.1" placeholder="37.0" />
+            </label>
+            <label>
+              脉搏 (次/分)
+              <input name="pulse" type="number" placeholder="72" />
+            </label>
+            <label>
+              呼吸 (次/分)
+              <input name="respiration" type="number" placeholder="18" />
+            </label>
+            <label>
+              血压 (mmHg)
+              <input name="blood_pressure" type="text" placeholder="120/80" />
+            </label>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>评估与处理</h2>
+          <label>
+            主诉
+            <textarea name="chief_complaint" rows="3" placeholder="患者主要不适症状"></textarea>
+          </label>
+          <label>
+            查体
+            <textarea name="physical_exam" rows="3" placeholder="体格检查所见"></textarea>
+          </label>
+          <label>
+            处理意见
+            <textarea name="treatment" rows="3" placeholder="护理及医疗处理措施"></textarea>
+          </label>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-large">确认提交</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
